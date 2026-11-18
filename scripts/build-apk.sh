@@ -14,6 +14,20 @@ mkdir -p dist build
 touch "$ROOT/android/.gdignore"
 find "$ROOT/android/build" -type f -name '*.import' -delete
 
+KEYSTORE="$ROOT/android/build/zaod-world.jks"
+if [ ! -f "$KEYSTORE" ]; then
+    keytool -genkeypair \
+        -v \
+        -keystore "$KEYSTORE" \
+        -storepass zaodworld \
+        -keypass zaodworld \
+        -alias zaod \
+        -keyalg RSA \
+        -keysize 2048 \
+        -validity 10000 \
+        -dname "CN=Zaod World, OU=Mobile, O=Zaod, L=Unknown, S=Unknown, C=US"
+fi
+
 printf '\norg.gradle.java.home=/usr/lib/jvm/java-17-openjdk-amd64\n' >> "$ROOT/android/build/gradle.properties"
 sed -i 's/^org.gradle.java.home=.*$//' "$ROOT/android/build/gradle.properties"
 printf 'org.gradle.java.home=/usr/lib/jvm/java-17-openjdk-amd64\n' >> "$ROOT/android/build/gradle.properties"
@@ -27,12 +41,12 @@ JAVA_HOME="$JAVA_HOME" ./gradlew --stop >/dev/null 2>&1 || true
 cd "$ROOT"
 
 "$GODOT" --headless --path "$ROOT" --import
-"$GODOT" --headless --path "$ROOT" --export-release "Android" "$ROOT/dist/zaodworld-stop01-v1.apk"
+"$GODOT" --headless --path "$ROOT" --export-release "Android" "$ROOT/dist/zaodworld-stop23-v1.apk"
 
-test -s "$ROOT/dist/zaodworld-stop01-v1.apk"
-sha256sum "$ROOT/dist/zaodworld-stop01-v1.apk" | tee "$ROOT/dist/zaodworld-stop01-v1.apk.sha256"
+test -s "$ROOT/dist/zaodworld-stop23-v1.apk"
+sha256sum "$ROOT/dist/zaodworld-stop23-v1.apk" | tee "$ROOT/dist/zaodworld-stop23-v1.apk.sha256"
 mkdir -p "$ROOT/z"
-cp "$ROOT/dist/zaodworld-stop01-v1.apk" "$ROOT/z/zw.apk"
+cp "$ROOT/dist/zaodworld-stop23-v1.apk" "$ROOT/z/zw.apk"
 sha256sum "$ROOT/z/zw.apk" | tee "$ROOT/z/zw.apk.sha256"
-ls -lh "$ROOT/dist/zaodworld-stop01-v1.apk"
+ls -lh "$ROOT/dist/zaodworld-stop23-v1.apk"
 ls -lh "$ROOT/z/zw.apk"
