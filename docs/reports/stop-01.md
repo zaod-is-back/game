@@ -15,6 +15,8 @@ make build
 
 APK: `dist/zaodworld-stop01-v1.apk`
 
+GitHub Release: https://github.com/zaod-is-back/game/releases/tag/stop1-v1
+
 ## Automated evidence
 
 Commands run:

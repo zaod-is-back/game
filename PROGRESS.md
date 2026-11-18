@@ -10,7 +10,7 @@ Stop 1: Foundation
 - [x] One-command APK build
 - [x] Start screen and build number
 - [x] Documentation
-- [ ] APK attached to GitHub Release
+- [x] APK attached to GitHub Release
 - [ ] Owner PASS
 
 No stop is complete until the owner reports PASS.
