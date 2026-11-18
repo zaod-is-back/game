@@ -1,0 +1,18 @@
+{
+  "name": "Zaod World",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "postCreateCommand": "bash scripts/setup-codespace.sh",
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "ANDROID_HOME": "/workspaces/.android-sdk",
+    "ANDROID_SDK_ROOT": "/workspaces/.android-sdk",
+    "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}
